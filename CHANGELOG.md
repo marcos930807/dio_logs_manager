@@ -1,3 +1,4 @@
-## 0.0.1
+## [0.0.1] - 24/05/2022
 
-* TODO: Initial Release.
+* First Release
+

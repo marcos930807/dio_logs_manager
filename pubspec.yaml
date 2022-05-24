@@ -1,7 +1,7 @@
 name: dio_logs_manager
-description: A new Flutter package project.
+description: HTTP Inspector tool for Dart which can debugging http requests for Dio
 version: 0.0.1
-homepage:
+homepage: https://github.com/marcos930807/dio_logs_manager
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
