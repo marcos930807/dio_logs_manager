@@ -12,13 +12,13 @@ import 'components/json_view.dart';
 class LogRequestWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogRequestWidget(this.netOptions);
+  const LogRequestWidget(this.netOptions, {Key? key}) : super(key: key);
 
   @override
-  _LogRequestWidgetState createState() => _LogRequestWidgetState();
+  LogRequestWidgetState createState() => LogRequestWidgetState();
 }
 
-class _LogRequestWidgetState extends State<LogRequestWidget>
+class LogRequestWidgetState extends State<LogRequestWidget>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
@@ -114,7 +114,7 @@ class _LogRequestWidgetState extends State<LogRequestWidget>
     if (data is Map) {
       return _buildJsonView('body', data);
     } else if (data is FormData) {
-      formDataMap = Map()
+      formDataMap = {}
         ..addEntries(data.fields)
         ..addEntries(data.files);
       return _getDefText('formdata:${map2Json(formDataMap)}');
@@ -123,10 +123,10 @@ class _LogRequestWidgetState extends State<LogRequestWidget>
         var decodedMap = json.decode(data);
         return _buildJsonView('body', decodedMap);
       } catch (e) {
-        return Text('body: $data');
+        return Text('Body: $data');
       }
     } else {
-      return const SizedBox();
+      return Text('Body: $data');
     }
   }
 

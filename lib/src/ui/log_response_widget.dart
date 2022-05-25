@@ -1,6 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:dio_logs_manager/src/data/models/net_options.dart';
 import 'package:flutter/material.dart';
-
+import 'package:dio/dio.dart';
 import '../utils/copy_clipboard.dart';
 import '../utils/json_utils.dart';
 import 'components/json_view.dart';
@@ -8,13 +10,13 @@ import 'components/json_view.dart';
 class LogResponseWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogResponseWidget(this.netOptions);
+  const LogResponseWidget(this.netOptions, {Key? key}) : super(key: key);
 
   @override
-  _LogResponseWidgetState createState() => _LogResponseWidgetState();
+  LogResponseWidgetState createState() => LogResponseWidgetState();
 }
 
-class _LogResponseWidgetState extends State<LogResponseWidget>
+class LogResponseWidgetState extends State<LogResponseWidget>
     with AutomaticKeepAliveClientMixin {
   bool isShowAll = false;
   double fontSize = 14;
@@ -22,7 +24,7 @@ class _LogResponseWidgetState extends State<LogResponseWidget>
   Widget build(BuildContext context) {
     super.build(context);
     final response = widget.netOptions.resOptions;
-    final json = response?.data ?? 'no response';
+    final responseData = response?.data ?? 'no response';
     return SingleChildScrollView(
         child: Column(
       children: <Widget>[
@@ -59,7 +61,7 @@ class _LogResponseWidgetState extends State<LogResponseWidget>
           ),
         ),
         _buildJsonView('Headers:', response?.headers),
-        _buildJsonView('Response.data:', json),
+        _buildResponse(responseData),
       ],
     ));
   }
@@ -87,6 +89,14 @@ class _LogResponseWidgetState extends State<LogResponseWidget>
         ),
       ],
     );
+  }
+
+  Widget _buildResponse(dynamic data) {
+    if (data is ResponseBody) {
+      //Para los Stream AKA descarga de ficheros
+      return Text("Content type was Stream.");
+    }
+    return _buildJsonView('Response.data', data);
   }
 
   @override

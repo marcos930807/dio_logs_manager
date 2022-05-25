@@ -9,16 +9,17 @@ class JsonView extends StatefulWidget {
 
   final double fontSize;
   const JsonView({
+    Key? key,
     this.json,
     this.isShowAll = false,
     this.fontSize = 14,
-  });
+  }) : super(key: key);
 
   @override
-  _JsonViewState createState() => _JsonViewState();
+  JsonViewState createState() => JsonViewState();
 }
 
-class _JsonViewState extends State<JsonView> {
+class JsonViewState extends State<JsonView> {
   Map<String, bool?> showMap = {};
 
   int currentIndex = 0;

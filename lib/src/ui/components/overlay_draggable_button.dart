@@ -39,18 +39,19 @@ class DraggableButtonWidget extends StatefulWidget {
   final double btnSize;
   final Color? btnColor;
 
-  DraggableButtonWidget({
+  const DraggableButtonWidget({
+    Key? key,
     this.title = 'http log',
     this.onTap,
     this.btnSize = 66,
     this.btnColor,
-  });
+  }) : super(key: key);
 
   @override
-  _DraggableButtonWidgetState createState() => _DraggableButtonWidgetState();
+  DraggableButtonWidgetState createState() => DraggableButtonWidgetState();
 }
 
-class _DraggableButtonWidgetState extends State<DraggableButtonWidget> {
+class DraggableButtonWidgetState extends State<DraggableButtonWidget> {
   double left = 30;
   double top = 100;
   late double screenWidth;

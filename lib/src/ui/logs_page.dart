@@ -24,6 +24,8 @@ class _LogsPageState extends State<LogsPage> {
       appBar: AppBar(
         title: const Text("Request Logs"),
         backgroundColor: theme.scaffoldBackgroundColor,
+        titleTextStyle: theme.textTheme.headlineSmall,
+        iconTheme: theme.iconTheme,
         elevation: 1.0,
         actions: [
           InkWell(

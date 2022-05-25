@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 toJson(dynamic data) {
-  var je = JsonEncoder.withIndent('  ');
-  var json = je.convert(data);
-  return json;
+  const je = JsonEncoder.withIndent('  ');
+  return je.convert(data);
 }
 
 String map2Json(Map? map) {

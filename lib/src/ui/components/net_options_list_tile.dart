@@ -35,7 +35,9 @@ class NetOptionsListTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              if (item.resOptions == null) ...[const LinearProgressIndicator()],
+              if (item.resOptions == null && item.errOptions == null) ...[
+                const LinearProgressIndicator()
+              ],
               Row(
                 children: [
                   Icon(
@@ -59,36 +61,7 @@ class NetOptionsListTile extends StatelessWidget {
               const Divider(height: 2),
               Row(
                 children: [
-                  if (resOpt == null || resOpt.statusCode == null)
-                    const SizedBox()
-                  else if (resOpt.statusCode! >= 200 &&
-                      resOpt.statusCode! < 210)
-                    const Padding(
-                      padding: EdgeInsets.only(right: 2),
-                      child: Icon(
-                        Icons.check_circle_outline,
-                        size: 15,
-                        color: Colors.green,
-                      ),
-                    )
-                  else if (resOpt.statusCode! == 404)
-                    const Padding(
-                      padding: EdgeInsets.only(right: 2),
-                      child: Icon(
-                        Icons.not_interested,
-                        size: 15,
-                        color: Colors.red,
-                      ),
-                    )
-                  else if (resOpt.statusCode! > 500)
-                    const Padding(
-                      padding: EdgeInsets.only(right: 2),
-                      child: Icon(
-                        Icons.error_outline,
-                        size: 15,
-                        color: Colors.red,
-                      ),
-                    ),
+                  _buildStatusIcon(item),
                   Expanded(
                     child: Text(
                       'Status: ${resOpt?.statusCode}',
@@ -111,5 +84,40 @@ class NetOptionsListTile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildStatusIcon(NetOptions item) {
+    var resOpt = item.resOptions;
+    if (resOpt == null || resOpt.statusCode == null) {
+      return const SizedBox();
+    } else if (resOpt.statusCode! >= 200 && resOpt.statusCode! < 210) {
+      return const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.check_circle_outline,
+          size: 15,
+          color: Colors.green,
+        ),
+      );
+    } else if (resOpt.statusCode! == 404) {
+      return const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.not_interested,
+          size: 15,
+          color: Colors.red,
+        ),
+      );
+    } else if (resOpt.statusCode! > 500) {
+      return const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.error_outline,
+          size: 15,
+          color: Colors.red,
+        ),
+      );
+    }
+    return const SizedBox();
   }
 }

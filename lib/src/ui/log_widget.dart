@@ -5,23 +5,17 @@ import 'package:flutter/material.dart';
 import 'log_error_widget.dart';
 import 'log_response_widget.dart';
 
-///网络请求详情
 class LogWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  LogWidget(this.netOptions);
+  const LogWidget(this.netOptions, {Key? key}) : super(key: key);
 
   @override
-  _LogWidgetState createState() => _LogWidgetState();
+  LogWidgetState createState() => LogWidgetState();
 }
 
-class _LogWidgetState extends State<LogWidget>
+class LogWidgetState extends State<LogWidget>
     with SingleTickerProviderStateMixin {
-  final List<Tab> tabs = <Tab>[
-    new Tab(text: "request"),
-    new Tab(text: "response"),
-  ];
-
   PageController? _pageController;
 
   int currentIndex = 0;
@@ -45,12 +39,12 @@ class _LogWidgetState extends State<LogWidget>
       appBar: AppBar(
         title: Text(
           widget.netOptions.reqOptions!.url!,
-          style: TextStyle(fontSize: 11),
+          style: const TextStyle(fontSize: 11),
         ),
         backgroundColor: theme.scaffoldBackgroundColor,
         elevation: 1.0,
+        titleTextStyle: theme.textTheme.headlineSmall,
         iconTheme: theme.iconTheme,
-        textTheme: theme.textTheme,
       ),
       body: PageView.builder(
         controller: _pageController,
@@ -69,7 +63,7 @@ class _LogWidgetState extends State<LogWidget>
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: _bottomTap,
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.cloud_upload_outlined), label: 'Request'),
           BottomNavigationBarItem(
@@ -91,6 +85,6 @@ class _LogWidgetState extends State<LogWidget>
 
   void _bottomTap(int value) {
     _pageController!.animateToPage(value,
-        duration: Duration(milliseconds: 300), curve: Curves.ease);
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 }

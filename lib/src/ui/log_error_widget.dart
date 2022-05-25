@@ -5,13 +5,13 @@ import '../data/models/net_options.dart';
 class LogErrorWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogErrorWidget(this.netOptions);
+  const LogErrorWidget(this.netOptions, {Key? key}) : super(key: key);
 
   @override
-  _LogErrorWidgetState createState() => _LogErrorWidgetState();
+  LogErrorWidgetState createState() => LogErrorWidgetState();
 }
 
-class _LogErrorWidgetState extends State<LogErrorWidget>
+class LogErrorWidgetState extends State<LogErrorWidget>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
