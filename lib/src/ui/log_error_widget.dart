@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/models/net_options.dart';
 
+///LogRequestWidget Page where [ErrOptions] info is shown
 class LogErrorWidget extends StatefulWidget {
   final NetOptions netOptions;
 

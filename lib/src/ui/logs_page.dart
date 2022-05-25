@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'components/overlay_draggable_button.dart';
 
+///Main Page where [NetOptions] are listed
 class LogsPage extends StatefulWidget {
   const LogsPage({Key? key}) : super(key: key);
 

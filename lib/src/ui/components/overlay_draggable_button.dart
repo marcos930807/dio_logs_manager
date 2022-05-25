@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 
 OverlayEntry? itemEntry;
 
+///Show [DrawableButtonWidget] which open [LogsPage]
 showDebugBtn(BuildContext context, {Widget? button, Color? btnColor}) {
   WidgetsBinding.instance.addPostFrameCallback((_) {
     dismissDebugBtn();
     itemEntry = OverlayEntry(
         builder: (BuildContext context) =>
             button ??
-            DraggableButtonWidget(
+            DrawableButtonWidget(
               btnColor: btnColor,
               onTap: () {
                 Navigator.of(context).push(
@@ -24,22 +25,25 @@ showDebugBtn(BuildContext context, {Widget? button, Color? btnColor}) {
   });
 }
 
+///Close the [OverlayEntry] for [DrawableButtonWidget]
 dismissDebugBtn() {
   itemEntry?.remove();
   itemEntry = null;
 }
 
+///Determine if [OverlayEntry] is shown
 bool debugBtnIsShow() {
   return !(itemEntry == null);
 }
 
-class DraggableButtonWidget extends StatefulWidget {
+///Widget to show a circular drawable button
+class DrawableButtonWidget extends StatefulWidget {
   final String title;
   final GestureTapCallback? onTap;
   final double btnSize;
   final Color? btnColor;
 
-  const DraggableButtonWidget({
+  const DrawableButtonWidget({
     Key? key,
     this.title = 'http log',
     this.onTap,
@@ -48,10 +52,10 @@ class DraggableButtonWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  DraggableButtonWidgetState createState() => DraggableButtonWidgetState();
+  DrawableButtonWidgetState createState() => DrawableButtonWidgetState();
 }
 
-class DraggableButtonWidgetState extends State<DraggableButtonWidget> {
+class DrawableButtonWidgetState extends State<DrawableButtonWidget> {
   double left = 30;
   double top = 100;
   late double screenWidth;

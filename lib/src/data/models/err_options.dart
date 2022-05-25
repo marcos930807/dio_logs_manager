@@ -1,9 +1,11 @@
 class ErrOptions {
   int? id;
   String? errorMsg;
+  String errorType;
   ErrOptions({
     this.id,
     this.errorMsg,
+    required this.errorType,
   });
 
   @override

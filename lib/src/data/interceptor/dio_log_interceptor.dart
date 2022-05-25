@@ -5,6 +5,7 @@ import 'package:dio_logs_manager/src/data/models/res_options.dart';
 
 import '../logs_pool.dart';
 
+/// Dio [Interceptor] for Logging network info;
 class DioLogInterceptor implements Interceptor {
   late LogPoolManager logManage;
   DioLogInterceptor({
@@ -15,12 +16,12 @@ class DioLogInterceptor implements Interceptor {
 
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
-    var errOptions = ErrOptions();
+    var errOptions = ErrOptions(errorType: err.type.name.toUpperCase());
     errOptions.id = err.requestOptions.hashCode;
     errOptions.errorMsg = err.toString();
     //onResponse(err.response);
     logManage.onError(errOptions);
-    if (err.response != null) saveResponse(err.response!);
+    if (err.response != null) _saveResponse(err.response!);
     return handler.next(err);
   }
 
@@ -42,11 +43,11 @@ class DioLogInterceptor implements Interceptor {
   @override
   Future onResponse(
       Response response, ResponseInterceptorHandler handler) async {
-    saveResponse(response);
+    _saveResponse(response);
     return handler.next(response);
   }
 
-  void saveResponse(Response response) {
+  void _saveResponse(Response response) {
     var resOpt = ResOptions();
     resOpt.id = response.requestOptions.hashCode;
     resOpt.responseTime = DateTime.now();

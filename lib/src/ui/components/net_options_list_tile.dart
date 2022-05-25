@@ -16,7 +16,7 @@ class NetOptionsListTile extends StatelessWidget {
 
     var requestTime = getTimeStr1(reqOpt.requestTime!);
 
-    Color? textColor = (item.errOptions != null || resOpt?.statusCode == null)
+    Color? textColor = (item.errOptions != null)
         ? Colors.red
         : Theme.of(context).textTheme.bodyText1!.color;
 
@@ -73,6 +73,15 @@ class NetOptionsListTile extends StatelessWidget {
                 ],
               ),
               const Divider(height: 2),
+              if (item.errOptions != null) ...[
+                Text(
+                  'Error: ${item.errOptions?.errorType}',
+                  style: TextStyle(
+                    color: textColor,
+                  ),
+                ),
+              ],
+              const Divider(height: 2),
               Text(
                 'RequestTime: $requestTime    Duration: ${resOpt?.duration ?? 0}ms',
                 style: TextStyle(
@@ -88,7 +97,16 @@ class NetOptionsListTile extends StatelessWidget {
 
   Widget _buildStatusIcon(NetOptions item) {
     var resOpt = item.resOptions;
-    if (resOpt == null || resOpt.statusCode == null) {
+    if (item.errOptions != null) {
+      return const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.error_outline,
+          size: 15,
+          color: Colors.red,
+        ),
+      );
+    } else if (resOpt == null || resOpt.statusCode == null) {
       return const SizedBox();
     } else if (resOpt.statusCode! >= 200 && resOpt.statusCode! < 210) {
       return const Padding(

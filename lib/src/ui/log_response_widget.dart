@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dio_logs_manager/src/data/models/net_options.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -7,6 +5,7 @@ import '../utils/copy_clipboard.dart';
 import '../utils/json_utils.dart';
 import 'components/json_view.dart';
 
+///LogResponseWidget Page where [ResOptions] info is shown
 class LogResponseWidget extends StatefulWidget {
   final NetOptions netOptions;
 
@@ -94,7 +93,7 @@ class LogResponseWidgetState extends State<LogResponseWidget>
   Widget _buildResponse(dynamic data) {
     if (data is ResponseBody) {
       //Para los Stream AKA descarga de ficheros
-      return Text("Content type was Stream.");
+      return const Text("Content type was Stream.");
     }
     return _buildJsonView('Response.data', data);
   }

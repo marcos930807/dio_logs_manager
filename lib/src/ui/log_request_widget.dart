@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../utils/json_utils.dart';
 import 'components/json_view.dart';
 
+///LogRequestWidget Page where [ReqOptions] info is shown
 class LogRequestWidget extends StatefulWidget {
   final NetOptions netOptions;
 
