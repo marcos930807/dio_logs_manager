@@ -7,3 +7,6 @@
 ## [0.0.3] - 25/05/2022
 
 * Error type improvements.
+## [0.1.0] - 25/05/2022
+
+* Style and JsonViewer Changes
