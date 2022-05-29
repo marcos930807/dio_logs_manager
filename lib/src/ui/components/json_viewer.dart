@@ -120,7 +120,7 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
           children: <Widget>[
             _wrapFlex(entry.key, const Text("")),
             if (entry.key != null && entry.key != "") ...[
-              if (ex && ink)
+              if (ink)
                 InkWell(
                     child: Text(
                       entry.key,
@@ -170,8 +170,10 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
       } else {
         //Primitive Type
         list.add(
-          RichText(
-            text: TextSpan(
+          Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: RichText(
+              text: TextSpan(
                 recognizer: TapGestureRecognizer()
                   ..onTap = () async {
                     // open desired screen
@@ -191,15 +193,17 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.normal),
                   ),
-                  TextSpan(
-                    text: entry.value?.toString() ?? "",
-                    style: TextStyle(
+                  ValueTextSpan(
+                    value: entry.value,
+                    textStyle: TextStyle(
                       fontSize: widget.fontSize,
                       fontWeight: FontWeight.normal,
                       color: Theme.of(context).textTheme.bodyText1?.color,
                     ),
                   ),
-                ]),
+                ],
+              ),
+            ),
           ),
         );
       }
@@ -425,9 +429,9 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.normal),
                   ),
-                  TextSpan(
-                    text: content?.toString() ?? "",
-                    style: TextStyle(
+                  ValueTextSpan(
+                    value: content,
+                    textStyle: TextStyle(
                       fontSize: widget.fontSize,
                       fontWeight: FontWeight.normal,
                       color: Theme.of(context).textTheme.bodyText1?.color,
@@ -461,7 +465,7 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
 
   getInkWell(int index) {
     return InkWell(
-        child: Text('[$index]', style: TextStyle(color: Colors.grey)),
+        child: Text('[$index]', style: const TextStyle(color: Colors.grey)),
         onTap: () {
           setState(() {
             openFlag[index] = !(openFlag[index]);
@@ -507,6 +511,23 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
   }
 }
 
+class ValueTextSpan extends TextSpan {
+  const ValueTextSpan({
+    Key? key,
+    required this.textStyle,
+    required this.value,
+  });
+
+  final dynamic value;
+  final TextStyle textStyle;
+
+  @override
+  String? get text => value is String ? '"$value"' : value?.toString();
+
+  @override
+  TextStyle? get style => textStyle;
+}
+
 class ValueWidget extends StatelessWidget {
   const ValueWidget({
     Key? key,
@@ -534,7 +555,7 @@ class ValueWidget extends StatelessWidget {
     } else if (content is String) {
       return Expanded(
           child: Text(
-        '\"' + content + '\"',
+        '"$content"',
         style: TextStyle(color: Colors.redAccent, fontSize: fontSize),
       ));
     } else if (content is bool) {
@@ -567,7 +588,7 @@ class ValueWidget extends StatelessWidget {
                 copyClipboard(context, toJson(content));
               },
               child: Text(
-                'Array<${JsonObjectViewerState.getTypeName(content)}>[${content.length}]',
+                'Array<${JsonObjectViewerState.getTypeName(content[0])}>[${content.length}]',
                 style: TextStyle(color: Colors.grey, fontSize: fontSize),
               )),
         );
