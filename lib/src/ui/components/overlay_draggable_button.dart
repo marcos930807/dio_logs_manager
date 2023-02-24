@@ -21,7 +21,7 @@ showDebugBtn(BuildContext context, {Widget? button, Color? btnColor}) {
               },
             ));
 
-    Overlay.of(context)?.insert(itemEntry!);
+    Overlay.of(context).insert(itemEntry!);
   });
 }
 

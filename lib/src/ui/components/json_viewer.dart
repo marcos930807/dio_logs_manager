@@ -182,14 +182,14 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
                 text: entry.key,
                 style: TextStyle(
                   fontSize: widget.fontSize,
-                  color: Theme.of(context).textTheme.bodyText1?.color,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                   fontWeight: FontWeight.bold,
                 ),
                 children: [
                   TextSpan(
                     text: ': ',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1?.color,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.normal),
                   ),
@@ -198,7 +198,7 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
                     textStyle: TextStyle(
                       fontSize: widget.fontSize,
                       fontWeight: FontWeight.normal,
-                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                   ),
                 ],
@@ -418,14 +418,14 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
                 text: '[$i]',
                 style: TextStyle(
                   fontSize: widget.fontSize,
-                  color: Theme.of(context).textTheme.bodyText1?.color,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                   fontWeight: FontWeight.bold,
                 ),
                 children: [
                   TextSpan(
                     text: ': ',
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1?.color,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.normal),
                   ),
@@ -434,7 +434,7 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
                     textStyle: TextStyle(
                       fontSize: widget.fontSize,
                       fontWeight: FontWeight.normal,
-                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                   ),
                 ]),

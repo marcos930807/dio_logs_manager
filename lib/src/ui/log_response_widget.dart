@@ -2,10 +2,6 @@ import 'package:dio_logs_manager/src/data/models/net_options.dart';
 import 'package:dio_logs_manager/src/ui/log_request_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import '../utils/copy_clipboard.dart';
-import '../utils/json_utils.dart';
-import 'components/json_view.dart';
-import 'components/json_viewer.dart';
 
 ///LogResponseWidget Page where [ResOptions] info is shown
 class LogResponseWidget extends StatefulWidget {

@@ -18,7 +18,7 @@ class NetOptionsListTile extends StatelessWidget {
 
     Color? textColor = (item.errOptions != null)
         ? Colors.red
-        : Theme.of(context).textTheme.bodyText1!.color;
+        : Theme.of(context).textTheme.bodyLarge!.color;
 
     return Card(
       margin: const EdgeInsets.all(8),
