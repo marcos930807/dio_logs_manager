@@ -43,7 +43,7 @@ class _LogsPageState extends State<LogsPage> {
               child: Align(
                 child: Text(
                   debugBtnIsShow() ? 'close overlay' : 'open overlay',
-                  style: theme.textTheme.caption!
+                  style: theme.textTheme.bodySmall!
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -59,7 +59,7 @@ class _LogsPageState extends State<LogsPage> {
               child: Align(
                 child: Text(
                   'clear',
-                  style: theme.textTheme.caption!
+                  style: theme.textTheme.bodySmall!
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
