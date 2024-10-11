@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 OverlayEntry? itemEntry;
 
 ///Show [DrawableButtonWidget] which open [LogsPage]
-showDebugBtn(BuildContext context, {Widget? button, Color? btnColor}) {
+showDebugBtn(BuildContext context,
+    {Widget? button, Color? btnColor, bool useRootNavigator = false}) {
   WidgetsBinding.instance.addPostFrameCallback((_) {
     dismissDebugBtn();
     itemEntry = OverlayEntry(
@@ -13,7 +14,7 @@ showDebugBtn(BuildContext context, {Widget? button, Color? btnColor}) {
             DrawableButtonWidget(
               btnColor: btnColor,
               onTap: () {
-                Navigator.of(context).push(
+                Navigator.of(context, rootNavigator: useRootNavigator).push(
                   MaterialPageRoute(
                     builder: (context) => const LogsPage(),
                   ),

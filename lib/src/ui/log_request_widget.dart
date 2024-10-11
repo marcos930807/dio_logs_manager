@@ -8,7 +8,6 @@ import 'package:dio_logs_manager/src/utils/time_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/json_utils.dart';
-import 'components/json_view.dart';
 
 ///LogRequestWidget Page where [ReqOptions] info is shown
 class LogRequestWidget extends StatefulWidget {
@@ -41,7 +40,7 @@ class LogRequestWidgetState extends State<LogRequestWidget>
               padding: const EdgeInsets.all(4.0),
               child: Row(
                 children: [
-                  ElevatedButton(
+                  TextButton(
                     onPressed: () {
                       copyClipboard(
                           context,

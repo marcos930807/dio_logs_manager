@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0] - 24/02/2023
+
+* Bump Dio Version.
+
 ## [0.1.1] - 29/05/2022
 
 * JsonViewer String improves

@@ -72,8 +72,8 @@ class NetOptionsListTile extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(height: 2),
               if (item.errOptions != null) ...[
+                const Divider(height: 2),
                 Text(
                   'Error: ${item.errOptions?.errorType}',
                   style: TextStyle(
