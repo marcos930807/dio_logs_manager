@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 class LogResponseWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogResponseWidget(this.netOptions, {Key? key}) : super(key: key);
+  const LogResponseWidget(this.netOptions, {super.key});
 
   @override
   LogResponseWidgetState createState() => LogResponseWidgetState();

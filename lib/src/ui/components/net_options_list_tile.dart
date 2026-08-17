@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class NetOptionsListTile extends StatelessWidget {
   const NetOptionsListTile({
-    Key? key,
+    super.key,
     required this.item,
-  }) : super(key: key);
+  });
   final NetOptions item;
   @override
   Widget build(BuildContext context) {

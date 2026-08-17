@@ -9,22 +9,21 @@ import 'models/res_options.dart';
 
 /// MemoryLogs Pool
 class LogPoolManager {
-  late LinkedHashMapNotifier<String, NetOptions> logMapNotifier;
-  late List<String> keys;
+  final LinkedHashMapNotifier<String, NetOptions> logMapNotifier =
+      LinkedHashMapNotifier(LinkedHashMap<String, NetOptions>());
+
+  /// Keys of [logMapNotifier], newest first. Kept in sync with the map so the
+  /// oldest entry can be evicted once [maxCount] is reached.
+  final List<String> keys = <String>[];
 
   /// max count logs
   int maxCount = 50;
   static LogPoolManager? _instance;
 
-  LogPoolManager._singleton() {
-    logMapNotifier = LinkedHashMapNotifier(LinkedHashMap<String, NetOptions>());
-    keys = <String>[];
-  }
+  LogPoolManager._singleton();
 
-  static LogPoolManager? getInstance() {
-    _instance ??= LogPoolManager._singleton();
-    return _instance;
-  }
+  static LogPoolManager getInstance() =>
+      _instance ??= LogPoolManager._singleton();
 
   //Update Error
   void onError(ErrOptions err) {
@@ -40,11 +39,15 @@ class LogPoolManager {
   /// Add new [NetOptions] to Map
   ///
   void onRequest(ReqOptions options) {
-    if (logMapNotifier.length >= maxCount) {
-      logMapNotifier.remove(keys.last);
-      keys.removeLast();
-    }
     var key = options.id.toString();
+    // Bail out on a key we already track. Inserting it again would push a
+    // duplicate into [keys] while the map ignores it, drifting the two apart
+    // until eviction starts dropping the wrong entries.
+    if (logMapNotifier.containsKey(key)) return;
+
+    while (logMapNotifier.length >= maxCount && keys.isNotEmpty) {
+      logMapNotifier.remove(keys.removeLast());
+    }
     keys.insert(0, key);
     logMapNotifier.putIfAbsent(key, () => NetOptions(reqOptions: options));
   }

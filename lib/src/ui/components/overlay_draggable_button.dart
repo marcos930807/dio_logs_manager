@@ -45,12 +45,12 @@ class DrawableButtonWidget extends StatefulWidget {
   final Color? btnColor;
 
   const DrawableButtonWidget({
-    Key? key,
+    super.key,
     this.title = 'http log',
     this.onTap,
     this.btnSize = 66,
     this.btnColor,
-  }) : super(key: key);
+  });
 
   @override
   DrawableButtonWidgetState createState() => DrawableButtonWidgetState();
@@ -74,7 +74,7 @@ class DrawableButtonWidgetState extends State<DrawableButtonWidget> {
 
     Widget w;
     Color primaryColor = widget.btnColor ?? Theme.of(context).primaryColor;
-    primaryColor = primaryColor.withOpacity(0.6);
+    primaryColor = primaryColor.withValues(alpha: 0.6);
     w = GestureDetector(
       onTap: widget.onTap,
       onPanUpdate: _dragUpdate,

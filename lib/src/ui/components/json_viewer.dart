@@ -11,9 +11,9 @@ class JsonViewer extends StatefulWidget {
   final double fontSize;
   const JsonViewer(
     this.jsonObj, {
-    Key? key,
+    super.key,
     this.fontSize = 14,
-  }) : super(key: key);
+  });
   @override
   JsonViewerState createState() => JsonViewerState();
 }
@@ -58,11 +58,11 @@ class JsonObjectViewer extends StatefulWidget {
 
   const JsonObjectViewer(
     this.jsonObj, {
-    Key? key,
+    super.key,
     this.jsonKey,
     this.isRoot = false,
     this.fontSize = 14,
-  }) : super(key: key);
+  });
 
   @override
   JsonObjectViewerState createState() => JsonObjectViewerState();
@@ -309,11 +309,6 @@ class JsonObjectViewerState extends State<JsonObjectViewer> {
     setState(() {});
   }
 
-  void _flexAll(bool flex) {
-    openFlag.forEach((k, v) {
-      openFlag[k] = flex;
-    });
-  }
 }
 
 class JsonArrayViewer extends StatefulWidget {
@@ -322,8 +317,7 @@ class JsonArrayViewer extends StatefulWidget {
   final bool isRoot;
   final double fontSize;
   const JsonArrayViewer(this.jsonArray,
-      {Key? key, this.isRoot = false, this.fontSize = 14})
-      : super(key: key);
+      {super.key, this.isRoot = false, this.fontSize = 14});
 
   @override
   JsonArrayViewerState createState() => JsonArrayViewerState();
@@ -503,12 +497,6 @@ class JsonArrayViewerState extends State<JsonArrayViewer> {
     setState(() {});
   }
 
-  void _flexAll(bool flex) {
-    //TODO test this
-    for (var element in openFlag) {
-      element = !element;
-    }
-  }
 }
 
 class ValueTextSpan extends TextSpan {
@@ -530,11 +518,11 @@ class ValueTextSpan extends TextSpan {
 
 class ValueWidget extends StatelessWidget {
   const ValueWidget({
-    Key? key,
+    super.key,
     required this.content,
     this.fontSize = 14,
     this.onTap,
-  }) : super(key: key);
+  });
   final double fontSize;
   final dynamic content;
   final void Function(Key?)? onTap;

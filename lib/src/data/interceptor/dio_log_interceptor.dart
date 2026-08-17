@@ -6,16 +6,15 @@ import 'package:dio_logs_manager/src/data/models/res_options.dart';
 import '../logs_pool.dart';
 
 /// Dio [Interceptor] for Logging network info;
-class DioLogInterceptor implements Interceptor {
-  late LogPoolManager logManage;
+class DioLogInterceptor extends Interceptor {
+  final LogPoolManager logManage;
+
   DioLogInterceptor({
-    maxLogCount = 50,
-  }) {
-    logManage = LogPoolManager.getInstance()!..maxCount = maxLogCount;
-  }
+    int maxLogCount = 50,
+  }) : logManage = LogPoolManager.getInstance()..maxCount = maxLogCount;
 
   @override
-  Future onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future onError(DioException err, ErrorInterceptorHandler handler) async {
     var errOptions = ErrOptions(errorType: err.type.name.toUpperCase());
     errOptions.id = err.requestOptions.hashCode;
     errOptions.errorMsg = err.toString();

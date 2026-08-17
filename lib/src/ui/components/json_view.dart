@@ -9,11 +9,11 @@ class JsonView extends StatefulWidget {
 
   final double fontSize;
   const JsonView({
-    Key? key,
+    super.key,
     this.json,
     this.isShowAll = false,
     this.fontSize = 14,
-  }) : super(key: key);
+  });
 
   @override
   JsonViewState createState() => JsonViewState();

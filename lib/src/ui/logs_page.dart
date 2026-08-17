@@ -9,7 +9,7 @@ import 'components/overlay_draggable_button.dart';
 
 ///Main Page where [NetOptions] are listed
 class LogsPage extends StatefulWidget {
-  const LogsPage({Key? key}) : super(key: key);
+  const LogsPage({super.key});
 
   @override
   State<LogsPage> createState() => _LogsPageState();
@@ -20,7 +20,7 @@ class _LogsPageState extends State<LogsPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final keys = LogPoolManager.getInstance()!.keys;
+    final keys = LogPoolManager.getInstance().keys;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Request Logs"),
@@ -51,7 +51,7 @@ class _LogsPageState extends State<LogsPage> {
           ),
           InkWell(
             onTap: () {
-              LogPoolManager.getInstance()!.clear();
+              LogPoolManager.getInstance().clear();
               setState(() {});
             },
             child: Container(
@@ -68,7 +68,7 @@ class _LogsPageState extends State<LogsPage> {
         ],
       ),
       body: ValueListenableBuilder<LinkedHashMap<String, NetOptions>>(
-        valueListenable: LogPoolManager.getInstance()!.logMapNotifier,
+        valueListenable: LogPoolManager.getInstance().logMapNotifier,
         builder: (context, map, child) {
           return map.isEmpty
               ? const Center(

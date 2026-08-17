@@ -6,7 +6,7 @@ import '../data/models/net_options.dart';
 class LogErrorWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogErrorWidget(this.netOptions, {Key? key}) : super(key: key);
+  const LogErrorWidget(this.netOptions, {super.key});
 
   @override
   LogErrorWidgetState createState() => LogErrorWidgetState();

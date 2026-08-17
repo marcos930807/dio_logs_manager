@@ -13,7 +13,7 @@ import '../utils/json_utils.dart';
 class LogRequestWidget extends StatefulWidget {
   final NetOptions netOptions;
 
-  const LogRequestWidget(this.netOptions, {Key? key}) : super(key: key);
+  const LogRequestWidget(this.netOptions, {super.key});
 
   @override
   LogRequestWidgetState createState() => LogRequestWidgetState();
@@ -77,13 +77,6 @@ class LogRequestWidgetState extends State<LogRequestWidget>
           ],
         ),
       ),
-    );
-  }
-
-  Text _getDefText(String str) {
-    return Text(
-      str,
-      style: const TextStyle(fontSize: 15),
     );
   }
 
@@ -151,9 +144,8 @@ Widget buildJsonView(BuildContext context, String key, dynamic data,
 
 class _LogRequestGeneralInfo extends StatelessWidget {
   const _LogRequestGeneralInfo({
-    Key? key,
     required this.netOptions,
-  }) : super(key: key);
+  });
   final NetOptions netOptions;
 
   @override
@@ -187,9 +179,8 @@ class _LogRequestGeneralInfo extends StatelessWidget {
 
 class _LogsRequestBody extends StatelessWidget {
   const _LogsRequestBody({
-    Key? key,
     required this.data,
-  }) : super(key: key);
+  });
   final dynamic data;
   @override
   Widget build(BuildContext context) {
@@ -225,11 +216,10 @@ class _LogsRequestBody extends StatelessWidget {
 
 class LogsParams extends StatelessWidget {
   const LogsParams(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.params,
-      this.fontSize = 14.0})
-      : super(key: key);
+      this.fontSize = 14.0});
   final String label;
   final Map<String, dynamic>? params;
   final double fontSize;

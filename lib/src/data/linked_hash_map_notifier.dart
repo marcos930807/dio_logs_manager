@@ -77,7 +77,11 @@ class LinkedHashMapNotifier<K, V> extends ChangeNotifier
     return valueAdded;
   }
 
-  void clear() => value.clear();
+  /// Removes all entries from the map and notifies listeners.
+  void clear() {
+    value.clear();
+    super.notifyListeners();
+  }
 
   @override
   String toString() => '${describeIdentity(this)}($value)';
